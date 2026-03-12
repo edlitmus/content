@@ -9,7 +9,7 @@
 
 The purpose of this project is to create *security policy content* for various
 platforms &mdash; *Red Hat Enterprise Linux*, *Fedora*, *Ubuntu*, *Debian*, *SUSE Linux Enterprise Server (SLES)*,... &mdash;
-as well as products &mdash; *Firefox*,...
+as well as products &mdash; *Firefox*, *MongoDB*,...
 We aim to make it as easy as possible to write new and maintain existing
 security content in all the commonly used formats.
 
@@ -112,7 +112,7 @@ On Debian (sid), you can use:
 apt install ssg-debian  # for Debian guides
 apt install ssg-debderived  # for Debian-based distributions (e.g. Ubuntu) guides
 apt install ssg-nondebian  # for other distributions guides (RHEL, Fedora, etc.)
-apt install ssg-applications  # for application-oriented guides (Firefox, JBoss, etc.)
+apt install ssg-applications  # for application-oriented guides (Firefox, MongoDB, JBoss, etc.)
 ```
 
 ### From release ZIP files
