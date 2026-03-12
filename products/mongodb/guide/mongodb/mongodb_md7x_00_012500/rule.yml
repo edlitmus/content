@@ -1,0 +1,16 @@
+documentation_complete: true
+
+title: 'MongoDB must be configured in accordance with the security configuration settings based on DOD security configuration and implementation guidance, including STIGs, NSA configuration guides, CTOs, DTMs, and IAVMs.'
+
+description: |-
+    Configuring MongoDB to implement organization-wide security implementation guides and security checklists ensures compliance with federal standards and establishes a common security baseline across DOD that reflects the most restrictive security posture consistent with operational requirements.
+
+    In addition to this SRG, sources of guidance on security and information assurance exist. These include NSA configuration guides, CTOs, DTMs, and IAVMs. MongoDB must be configured in compliance with guidance from all such relevant sources.
+
+rationale: |-
+    This rule was migrated from MongoDB STIG standalone development content into product-managed structure.
+
+severity: medium
+
+references:
+    stigid@mongodb: MD7X-00-012500

@@ -341,6 +341,7 @@ all_cmake_products=(
 	FEDORA
 	FIREFOX
 	KYLINSERVER10
+	MONGODB
 	OCP4
 	OL7
 	OL8

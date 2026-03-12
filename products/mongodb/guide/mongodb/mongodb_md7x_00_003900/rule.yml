@@ -1,0 +1,22 @@
+documentation_complete: true
+
+title: 'If passwords are used for authentication, MongoDB must transmit only encrypted representations of passwords.'
+
+description: |-
+    The DOD standard for authentication is DOD-approved PKI certificates.
+
+    Authentication based on user ID and password may be used only when it is not possible to employ a PKI certificate and requires AO approval.
+
+    In such cases, passwords need to be protected at all times, and encryption is the standard method for protecting passwords during transmission.
+
+    DBMS passwords sent in clear-text format across the network are vulnerable to discovery by unauthorized users. Disclosure of passwords may easily lead to unauthorized access to the database.
+
+    Satisfies: SRG-APP-000172-DB-000075, SRG-APP-000175-DB-000067
+
+rationale: |-
+    This rule was migrated from MongoDB STIG standalone development content into product-managed structure.
+
+severity: high
+
+references:
+    stigid@mongodb: MD7X-00-003900

@@ -1,0 +1,15 @@
+product: mongodb
+full_name: MongoDB
+type: product
+
+benchmark_id: MONGODB
+benchmark_root: "./guide"
+
+profiles_root: "./profiles"
+
+cpes_root: "../../shared/applicability"
+cpes:
+  - mongodb:
+      name: "cpe:/a:mongodb:mongodb"
+      title: "MongoDB"
+      check_id: installed_app_is_mongodb
