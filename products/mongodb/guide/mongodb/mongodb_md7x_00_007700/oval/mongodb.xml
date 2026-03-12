@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_007700" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_007700" version="2">
     <metadata>
-      <title>MD7X-00-007700 - MongoDB must prohibit user installation of logic modules (stored procedures, functions, triggers, views, etc.) without explicit privileged status.</title>
-      <description>Standalone OVAL definition for MD7X-00-007700 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-007700 - MongoDB must prohibit user installation of logic modules.</title>
+      <description>Checks that security.javascriptEnabled is false in mongod.conf. Disabling server-side JavaScript prevents database users from installing or executing arbitrary logic modules (stored JavaScript functions, $function aggregation operators) that could circumvent access controls or inject malicious behavior.</description>
       <reference source="STIG" ref_id="MD7X-00-007700" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

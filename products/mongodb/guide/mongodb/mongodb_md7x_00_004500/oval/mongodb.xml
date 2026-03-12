@@ -1,19 +1,36 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_004500" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+           xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+
+  <definition class="compliance" id="mongodb_md7x_00_004500" version="2">
     <metadata>
-      <title>MD7X-00-004500 - Standalone automated mapping check.</title>
-      <description>Standalone OVAL definition for MD7X-00-004500 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-004500 - MongoDB must uniquely identify and authenticate nonorganizational users.</title>
+      <description>Checks that authenticationMechanisms in mongod.conf includes at
+      least one strong authentication mechanism: SCRAM-SHA-256, SCRAM-SHA-512,
+      MONGODB-X509, GSSAPI, or PLAIN. Nonorganizational users (contractors, partners,
+      service accounts) must be individually identified and authenticated through the
+      same mechanism as organizational users.</description>
       <reference source="STIG" ref_id="MD7X-00-004500" />
-    <affected family="unix"><platform>MongoDB</platform></affected></metadata>
+      <affected family="unix"><platform>MongoDB</platform></affected>
+    </metadata>
     <criteria operator="AND">
-      <criterion test_ref="mongodb_md7x_00_004500_oval_mil_disa_stig_mongodb7_tst_33" comment="MD7X-00-004500 pattern 33 matched" />
+      <criterion test_ref="mongodb_md7x_00_004500_oval_mil_disa_stig_mongodb7_tst_authmech"
+                 comment="authenticationMechanisms includes at least one strong mechanism" />
     </criteria>
   </definition>
-  <ind:textfilecontent54_object id="mongodb_md7x_00_004500_oval_mil_disa_stig_mongodb7_obj_1" version="1">
+
+  <ind:textfilecontent54_object
+      id="mongodb_md7x_00_004500_oval_mil_disa_stig_mongodb7_obj_authmech"
+      version="1">
     <ind:filepath>/etc/mongod.conf</ind:filepath>
-    <ind:pattern operation="pattern match">^\s*authorization\s*:\s*"?enabled"?\s*$</ind:pattern>
+    <ind:pattern operation="pattern match">^\s*authenticationMechanisms\s*:\s*.*(SCRAM-SHA-256|SCRAM-SHA-512|MONGODB-X509|GSSAPI|PLAIN).*$</ind:pattern>
     <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
   </ind:textfilecontent54_object>
-  <ind:textfilecontent54_test id="mongodb_md7x_00_004500_oval_mil_disa_stig_mongodb7_tst_33" version="1" check="all" check_existence="at_least_one_exists" comment="MD7X-00-004500 config pattern present">
-    <ind:object object_ref="mongodb_md7x_00_004500_oval_mil_disa_stig_mongodb7_obj_1" />
+
+  <ind:textfilecontent54_test
+      id="mongodb_md7x_00_004500_oval_mil_disa_stig_mongodb7_tst_authmech"
+      version="1" check="all" check_existence="at_least_one_exists"
+      comment="authenticationMechanisms includes a strong authentication mechanism">
+    <ind:object object_ref="mongodb_md7x_00_004500_oval_mil_disa_stig_mongodb7_obj_authmech" />
   </ind:textfilecontent54_test>
-  </def-group>
+
+</def-group>

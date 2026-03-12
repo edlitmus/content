@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_004300" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_004300" version="2">
     <metadata>
-      <title>MD7X-00-004300 - MongoDB must obscure feedback of authentication information during the authentication process to protect the information from possible exploitation/use by unauthorized individuals.</title>
-      <description>Standalone OVAL definition for MD7X-00-004300 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-004300 - MongoDB must obscure feedback of authentication information during the authentication process.</title>
+      <description>Checks that security.redactClientLogData is true in mongod.conf. When enabled, MongoDB redacts potentially sensitive field values from diagnostic log messages, preventing credential or query content from appearing in logs visible to operators.</description>
       <reference source="STIG" ref_id="MD7X-00-004300" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_000400" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_000400" version="2">
     <metadata>
-      <title>MD7X-00-000400 - MongoDB must provide audit record generation for DOD-defined auditable events within all DBMS/database components.</title>
-      <description>Standalone OVAL definition for MD7X-00-000400 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-000400 - MongoDB must provide audit record generation for DOD-defined auditable events.</title>
+      <description>Checks that (1) the auditLog section is present and (2) auditLog.auditAuthorizationSuccess is true in mongod.conf, ensuring MongoDB generates audit records for all authorization decisions including successful access events.</description>
       <reference source="STIG" ref_id="MD7X-00-000400" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_006700" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_006700" version="2">
     <metadata>
-      <title>MD7X-00-006700 - MongoDB must enforce discretionary access control (DAC) policies, as defined by the data owner, over defined subjects and objects.</title>
-      <description>Standalone OVAL definition for MD7X-00-006700 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-006700 - MongoDB must enforce discretionary access control (DAC) policies as defined by the data owner.</title>
+      <description>Checks that security.authorization is enabled in mongod.conf. MongoDB implements DAC through its RBAC model where collection owners (dbOwner role) can grant or revoke access to other principals. Authorization must be enabled for these discretionary controls to be enforced.</description>
       <reference source="STIG" ref_id="MD7X-00-006700" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_005500" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_005500" version="2">
     <metadata>
-      <title>MD7X-00-005500 - Standalone automated mapping check.</title>
-      <description>Standalone OVAL definition for MD7X-00-005500 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-005500 - MongoDB must prevent unauthorized and unintended information transfer via shared system resources.</title>
+      <description>Checks that security.authorization is enabled in mongod.conf. Role-based access control prevents unauthorized reads or writes through shared database objects (collections, indexes, cursors), ensuring that principals can only access resources explicitly granted to their assigned roles.</description>
       <reference source="STIG" ref_id="MD7X-00-005500" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

@@ -1,7 +1,5 @@
 #!/bin/bash
 # remediation = none
 
-mkdir -p /etc
-cat > /etc/mongod.conf <<'EOF'
-authorization: enabled
-EOF
+mkdir -p /var/lib/mongodb
+chmod 0750 /var/lib/mongodb

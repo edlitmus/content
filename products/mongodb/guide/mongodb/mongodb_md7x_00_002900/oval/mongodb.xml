@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_002900" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_002900" version="2">
     <metadata>
-      <title>MD7X-00-002900 - Standalone automated mapping check.</title>
-      <description>Standalone OVAL definition for MD7X-00-002900 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-002900 - Database objects must be owned by database principals authorized for ownership.</title>
+      <description>Checks that security.authorization is enabled in mongod.conf. MongoDB enforces object ownership through its RBAC model -- only principals with the dbOwner or equivalent role can modify owned collections. Authorization must be enabled for ownership controls to be active.</description>
       <reference source="STIG" ref_id="MD7X-00-002900" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

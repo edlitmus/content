@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_008400" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_008400" version="2">
     <metadata>
-      <title>MD7X-00-008400 - MongoDB must only accept end entity certificates issued by DOD PKI or DOD-approved PKI Certification Authorities (CAs) for the establishment of all encrypted sessions.</title>
-      <description>Standalone OVAL definition for MD7X-00-008400 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-008400 - MongoDB must only accept end entity certificates issued by DOD PKI or DOD-approved PKI Certification Authorities.</title>
+      <description>Checks that net.tls.CAFile is configured in mongod.conf to reference a Certificate Authority bundle. This ensures MongoDB validates client and server certificates against an authorized CA chain, rejecting certificates issued by unapproved CAs.</description>
       <reference source="STIG" ref_id="MD7X-00-008400" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

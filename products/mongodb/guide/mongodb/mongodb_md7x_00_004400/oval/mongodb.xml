@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_004400" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_004400" version="2">
     <metadata>
-      <title>MD7X-00-004400 - MongoDB must use NIST FIPS 140-2 or 140-3 validated cryptographic modules for cryptographic operations.</title>
-      <description>Standalone OVAL definition for MD7X-00-004400 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-004400 - MongoDB must use NIST FIPS 140-2 or 140-3 validated cryptographic modules.</title>
+      <description>Checks that security.FIPSMode is true in mongod.conf. Setting FIPSMode forces MongoDB to use the system OpenSSL library in FIPS mode, restricting cryptographic operations to FIPS 140-2 or 140-3 validated algorithms only.</description>
       <reference source="STIG" ref_id="MD7X-00-004400" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

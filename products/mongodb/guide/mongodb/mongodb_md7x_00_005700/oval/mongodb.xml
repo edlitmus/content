@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_005700" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_005700" version="2">
     <metadata>
-      <title>MD7X-00-005700 - MongoDB must check the validity of all data inputs except those specifically identified by the organization.</title>
-      <description>Standalone OVAL definition for MD7X-00-005700 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-005700 - MongoDB must check the validity of all data inputs except those explicitly identified as exempt.</title>
+      <description>Checks that security.javascriptEnabled is false in mongod.conf. Disabling server-side JavaScript prevents malicious or unexpected code from executing in the query pipeline, reducing the risk of adverse behavior from invalid or specially crafted inputs.</description>
       <reference source="STIG" ref_id="MD7X-00-005700" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

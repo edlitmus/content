@@ -1,19 +1,39 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_009300" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+           xmlns:lin="http://oval.mitre.org/XMLSchema/oval-definitions-5#linux">
+
+  <definition class="compliance" id="mongodb_md7x_00_009300" version="2">
     <metadata>
-      <title>MD7X-00-009300 - Standalone automated mapping check.</title>
-      <description>Standalone OVAL definition for MD7X-00-009300 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-009300 - MongoDB must be a supported version (7.x).</title>
+      <description>Checks that the mongodb-org package installed on the system is
+      version 7.0.0 or later. MongoDB releases prior to 7.0 are end-of-life and
+      no longer receive security patches.</description>
       <reference source="STIG" ref_id="MD7X-00-009300" />
-    <affected family="unix"><platform>MongoDB</platform></affected></metadata>
+      <affected family="unix"><platform>MongoDB</platform></affected>
+    </metadata>
     <criteria operator="AND">
-      <criterion test_ref="mongodb_md7x_00_009300_oval_mil_disa_stig_mongodb7_tst_52" comment="MD7X-00-009300 pattern 52 matched" />
+      <criterion test_ref="mongodb_md7x_00_009300_oval_mil_disa_stig_mongodb7_pkgtest"
+                 comment="mongodb-org package version is 7.0.0 or later" />
     </criteria>
   </definition>
-  <ind:textfilecontent54_object id="mongodb_md7x_00_009300_oval_mil_disa_stig_mongodb7_obj_1" version="1">
-    <ind:filepath>/etc/mongod.conf</ind:filepath>
-    <ind:pattern operation="pattern match">^\s*authorization\s*:\s*"?enabled"?\s*$</ind:pattern>
-    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
-  </ind:textfilecontent54_object>
-  <ind:textfilecontent54_test id="mongodb_md7x_00_009300_oval_mil_disa_stig_mongodb7_tst_52" version="1" check="all" check_existence="at_least_one_exists" comment="MD7X-00-009300 config pattern present">
-    <ind:object object_ref="mongodb_md7x_00_009300_oval_mil_disa_stig_mongodb7_obj_1" />
-  </ind:textfilecontent54_test>
-  </def-group>
+
+  <lin:dpkginfo_test
+      id="mongodb_md7x_00_009300_oval_mil_disa_stig_mongodb7_pkgtest"
+      version="1" check="all" check_existence="at_least_one_exists"
+      comment="mongodb-org package is installed at version 7.0.0 or later">
+    <lin:object object_ref="mongodb_md7x_00_009300_oval_mil_disa_stig_mongodb7_pkgobj" />
+    <lin:state  state_ref="mongodb_md7x_00_009300_oval_mil_disa_stig_mongodb7_pkgstate" />
+  </lin:dpkginfo_test>
+
+  <lin:dpkginfo_object
+      id="mongodb_md7x_00_009300_oval_mil_disa_stig_mongodb7_pkgobj"
+      version="1">
+    <lin:name>mongodb-org</lin:name>
+  </lin:dpkginfo_object>
+
+  <lin:dpkginfo_state
+      id="mongodb_md7x_00_009300_oval_mil_disa_stig_mongodb7_pkgstate"
+      version="1">
+    <lin:evr datatype="evr_string" operation="greater than or equal">0:7.0.0-1</lin:evr>
+  </lin:dpkginfo_state>
+
+</def-group>

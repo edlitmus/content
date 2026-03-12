@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_004600" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_004600" version="2">
     <metadata>
-      <title>MD7X-00-004600 - Standalone automated mapping check.</title>
-      <description>Standalone OVAL definition for MD7X-00-004600 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-004600 - MongoDB must separate user functionality from database management functionality.</title>
+      <description>Checks that security.authorization is enabled in mongod.conf. Enabling RBAC ensures that end-user roles (read, readWrite) are separate from administrative roles (dbAdmin, clusterAdmin, root), providing functional separation between regular users and database management principals.</description>
       <reference source="STIG" ref_id="MD7X-00-004600" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">
