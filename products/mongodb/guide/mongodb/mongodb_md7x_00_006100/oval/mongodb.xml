@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_006100" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_006100" version="2">
     <metadata>
-      <title>MD7X-00-006100 - MongoDB must reveal detailed error messages only to the information system security officer (ISSO), information system security manager (ISSM), system administrator (SA), and database administrator (DBA).</title>
-      <description>Standalone OVAL definition for MD7X-00-006100 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-006100 - MongoDB must reveal detailed error messages only to authorized personnel.</title>
+      <description>Checks that security.redactClientLogData is true in mongod.conf. When log data is redacted, verbose diagnostic information containing document contents is suppressed, limiting detailed operational data to authorized system administrators only.</description>
       <reference source="STIG" ref_id="MD7X-00-006100" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_004900" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_004900" version="2">
     <metadata>
-      <title>MD7X-00-004900 - MongoDB must maintain the authenticity of communications sessions by guarding against man-in-the-middle attacks that guess at Session ID values.</title>
-      <description>Standalone OVAL definition for MD7X-00-004900 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-004900 - MongoDB must maintain the authenticity of communications sessions by guarding against man-in-the-middle attacks.</title>
+      <description>Checks that net.tls.mode is requireTLS in mongod.conf, enforcing TLS for all client and inter-node connections. TLS with certificate validation prevents man-in-the-middle attacks by authenticating both endpoints before any data is exchanged.</description>
       <reference source="STIG" ref_id="MD7X-00-004900" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

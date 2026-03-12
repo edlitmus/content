@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_006800" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_006800" version="2">
     <metadata>
-      <title>MD7X-00-006800 - MongoDB must prevent nonprivileged users from executing privileged functions, to include disabling, circumventing, or altering implemented security safeguards/countermeasures.</title>
-      <description>Standalone OVAL definition for MD7X-00-006800 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-006800 - MongoDB must prevent nonprivileged users from executing privileged functions.</title>
+      <description>Checks that security.authorization is enabled in mongod.conf. With RBAC active, administrative operations (user management, server configuration, clusterAdmin actions) are restricted to principals assigned privileged roles. Nonprivileged users cannot execute these operations without explicit role grants.</description>
       <reference source="STIG" ref_id="MD7X-00-006800" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

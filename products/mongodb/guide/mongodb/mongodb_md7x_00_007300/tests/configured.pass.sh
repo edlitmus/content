@@ -1,7 +1,12 @@
 #!/bin/bash
 # remediation = none
+mkdir -p /etc /var/log/mongodb
+cat > /etc/mongod.conf <<'CONFEOF'
+systemLog:
+  logRotate: reopen
 
-mkdir -p /etc
-cat > /etc/mongod.conf <<'EOF'
-authorization: enabled
-EOF
+auditLog:
+  destination: file
+  format: JSON
+  path: /var/log/mongodb/auditLog.json
+CONFEOF

@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_003800" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_003800" version="2">
     <metadata>
-      <title>MD7X-00-003800 - If passwords are used for authentication, MongoDB must store only hashed, salted representations of passwords.</title>
-      <description>Standalone OVAL definition for MD7X-00-003800 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-003800 - If passwords are used for authentication, MongoDB must store only hashed representations.</title>
+      <description>Checks that security.authenticationMechanisms includes SCRAM-SHA-256 or SCRAM-SHA-512 in mongod.conf. SCRAM mechanisms store salted hash representations of credentials, never plaintext passwords, satisfying the requirement for hashed credential storage.</description>
       <reference source="STIG" ref_id="MD7X-00-003800" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

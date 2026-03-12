@@ -1,19 +1,48 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_007800" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+           xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"
+           xmlns:unix="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+
+  <definition class="compliance" id="mongodb_md7x_00_007800" version="2">
     <metadata>
-      <title>MD7X-00-007800 - Standalone automated mapping check.</title>
-      <description>Standalone OVAL definition for MD7X-00-007800 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-007800 - MongoDB must enforce access restrictions associated with changes to the configuration of MongoDB.</title>
+      <description>Checks that /etc/mongod.conf has file permissions of 640 (rw-r-----)
+      or more restrictive. This ensures only root (or the mongod service account owner)
+      can modify the configuration file, preventing unauthorized configuration changes.</description>
       <reference source="STIG" ref_id="MD7X-00-007800" />
-    <affected family="unix"><platform>MongoDB</platform></affected></metadata>
+      <affected family="unix"><platform>MongoDB</platform></affected>
+    </metadata>
     <criteria operator="AND">
-      <criterion test_ref="mongodb_md7x_00_007800_oval_mil_disa_stig_mongodb7_tst_43" comment="MD7X-00-007800 pattern 43 matched" />
+      <criterion test_ref="mongodb_md7x_00_007800_conf_perm_tst"
+                 comment="mongod.conf has mode 640 or more restrictive" />
     </criteria>
   </definition>
-  <ind:textfilecontent54_object id="mongodb_md7x_00_007800_oval_mil_disa_stig_mongodb7_obj_1" version="1">
-    <ind:filepath>/etc/mongod.conf</ind:filepath>
-    <ind:pattern operation="pattern match">^\s*authorization\s*:\s*"?enabled"?\s*$</ind:pattern>
-    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
-  </ind:textfilecontent54_object>
-  <ind:textfilecontent54_test id="mongodb_md7x_00_007800_oval_mil_disa_stig_mongodb7_tst_43" version="1" check="all" check_existence="at_least_one_exists" comment="MD7X-00-007800 config pattern present">
-    <ind:object object_ref="mongodb_md7x_00_007800_oval_mil_disa_stig_mongodb7_obj_1" />
-  </ind:textfilecontent54_test>
-  </def-group>
+
+  <unix:file_object
+      id="mongodb_md7x_00_007800_conf_file_obj"
+      version="1">
+    <unix:filepath>/etc/mongod.conf</unix:filepath>
+  </unix:file_object>
+
+  <unix:file_state
+      id="mongodb_md7x_00_007800_conf_perm_state"
+      version="1">
+    <unix:uread  datatype="boolean">true</unix:uread>
+    <unix:uwrite datatype="boolean">true</unix:uwrite>
+    <unix:uexec  datatype="boolean">false</unix:uexec>
+    <unix:gread  datatype="boolean">true</unix:gread>
+    <unix:gwrite datatype="boolean">false</unix:gwrite>
+    <unix:gexec  datatype="boolean">false</unix:gexec>
+    <unix:oread  datatype="boolean">false</unix:oread>
+    <unix:owrite datatype="boolean">false</unix:owrite>
+    <unix:oexec  datatype="boolean">false</unix:oexec>
+  </unix:file_state>
+
+  <unix:file_test
+      id="mongodb_md7x_00_007800_conf_perm_tst"
+      version="1" check="all" check_existence="all_exist"
+      comment="mongod.conf permissions are 640 (rw-r-----)">
+    <unix:object object_ref="mongodb_md7x_00_007800_conf_file_obj" />
+    <unix:state  state_ref="mongodb_md7x_00_007800_conf_perm_state" />
+  </unix:file_test>
+
+</def-group>

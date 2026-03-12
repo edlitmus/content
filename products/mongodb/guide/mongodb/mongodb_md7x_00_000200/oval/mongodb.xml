@@ -1,19 +1,55 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_000200" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+           xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+
+  <definition class="compliance" id="mongodb_md7x_00_000200" version="2">
     <metadata>
-      <title>MD7X-00-000200 - MongoDB must integrate with an organization-level authentication/access mechanism providing account management and automation for all users, groups, roles, and any other principals.</title>
-      <description>Standalone OVAL definition for MD7X-00-000200 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-000200 - MongoDB must integrate with an organization-level authentication/access mechanism.</title>
+      <description>Checks that MongoDB is configured to use an external (organization-level)
+      authentication mechanism. Acceptable configurations include LDAP-backed
+      authentication (security.ldap.servers) or GSSAPI/Kerberos and MONGODB-OIDC
+      authentication mechanisms. A standalone local-only SCRAM configuration does
+      not satisfy this requirement.</description>
       <reference source="STIG" ref_id="MD7X-00-000200" />
-    <affected family="unix"><platform>MongoDB</platform></affected></metadata>
-    <criteria operator="AND">
-      <criterion test_ref="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_tst_1" comment="MD7X-00-000200 pattern 1 matched" />
+      <affected family="unix"><platform>MongoDB</platform></affected>
+    </metadata>
+    <criteria operator="OR">
+      <criterion test_ref="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_tst_ldap"
+                 comment="security.ldap.servers is configured in mongod.conf" />
+      <criterion test_ref="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_tst_extauth"
+                 comment="authenticationMechanisms includes an org-level mechanism (GSSAPI, PLAIN, MONGODB-OIDC)" />
     </criteria>
   </definition>
-  <ind:textfilecontent54_object id="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_obj_1" version="1">
+
+  <!-- Check LDAP server configuration -->
+  <ind:textfilecontent54_object
+      id="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_obj_ldap"
+      version="1">
     <ind:filepath>/etc/mongod.conf</ind:filepath>
-    <ind:pattern operation="pattern match">^\s*authorization\s*:\s*"?enabled"?\s*$</ind:pattern>
+    <ind:pattern operation="pattern match">^\s*servers\s*:\s*\S+</ind:pattern>
     <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
   </ind:textfilecontent54_object>
-  <ind:textfilecontent54_test id="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_tst_1" version="1" check="all" check_existence="at_least_one_exists" comment="MD7X-00-000200 config pattern present">
-    <ind:object object_ref="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_obj_1" />
+
+  <ind:textfilecontent54_test
+      id="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_tst_ldap"
+      version="1" check="all" check_existence="at_least_one_exists"
+      comment="security.ldap.servers is configured">
+    <ind:object object_ref="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_obj_ldap" />
   </ind:textfilecontent54_test>
-  </def-group>
+
+  <!-- Check for external authentication mechanism (GSSAPI, PLAIN, or MONGODB-OIDC) -->
+  <ind:textfilecontent54_object
+      id="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_obj_extauth"
+      version="1">
+    <ind:filepath>/etc/mongod.conf</ind:filepath>
+    <ind:pattern operation="pattern match">^\s*authenticationMechanisms\s*:\s*.*(GSSAPI|PLAIN|MONGODB-OIDC).*$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test
+      id="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_tst_extauth"
+      version="1" check="all" check_existence="at_least_one_exists"
+      comment="authenticationMechanisms includes an org-level mechanism">
+    <ind:object object_ref="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_obj_extauth" />
+  </ind:textfilecontent54_test>
+
+</def-group>

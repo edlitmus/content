@@ -1,19 +1,49 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_002700" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+           xmlns:unix="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+
+  <definition class="compliance" id="mongodb_md7x_00_002700" version="2">
     <metadata>
-      <title>MD7X-00-002700 - Standalone automated mapping check.</title>
-      <description>Standalone OVAL definition for MD7X-00-002700 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-002700 - MongoDB software installation account must be restricted to authorized users.</title>
+      <description>Checks that /usr/bin/mongod is owned by root (uid=0, gid=0) and
+      has mode 0755 (rwxr-xr-x). A root-owned binary without world-write permissions
+      can only be replaced or modified by root or authorized administrators.</description>
       <reference source="STIG" ref_id="MD7X-00-002700" />
-    <affected family="unix"><platform>MongoDB</platform></affected></metadata>
+      <affected family="unix"><platform>MongoDB</platform></affected>
+    </metadata>
     <criteria operator="AND">
-      <criterion test_ref="mongodb_md7x_00_002700_oval_mil_disa_stig_mongodb7_tst_28" comment="MD7X-00-002700 pattern 28 matched" />
+      <criterion test_ref="mongodb_md7x_00_002700_oval_mil_disa_stig_mongodb7_filetest"
+                 comment="/usr/bin/mongod is owned by root with mode 0755" />
     </criteria>
   </definition>
-  <ind:textfilecontent54_object id="mongodb_md7x_00_002700_oval_mil_disa_stig_mongodb7_obj_1" version="1">
-    <ind:filepath>/etc/mongod.conf</ind:filepath>
-    <ind:pattern operation="pattern match">^\s*authorization\s*:\s*"?enabled"?\s*$</ind:pattern>
-    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
-  </ind:textfilecontent54_object>
-  <ind:textfilecontent54_test id="mongodb_md7x_00_002700_oval_mil_disa_stig_mongodb7_tst_28" version="1" check="all" check_existence="at_least_one_exists" comment="MD7X-00-002700 config pattern present">
-    <ind:object object_ref="mongodb_md7x_00_002700_oval_mil_disa_stig_mongodb7_obj_1" />
-  </ind:textfilecontent54_test>
-  </def-group>
+
+  <unix:file_test
+      id="mongodb_md7x_00_002700_oval_mil_disa_stig_mongodb7_filetest"
+      version="1" check="all" check_existence="at_least_one_exists"
+      comment="/usr/bin/mongod binary is owned by root (uid=0, gid=0) and mode 0755">
+    <unix:object object_ref="mongodb_md7x_00_002700_oval_mil_disa_stig_mongodb7_fileobj" />
+    <unix:state  state_ref="mongodb_md7x_00_002700_oval_mil_disa_stig_mongodb7_filestate" />
+  </unix:file_test>
+
+  <unix:file_object
+      id="mongodb_md7x_00_002700_oval_mil_disa_stig_mongodb7_fileobj"
+      version="1">
+    <unix:filepath>/usr/bin/mongod</unix:filepath>
+  </unix:file_object>
+
+  <unix:file_state
+      id="mongodb_md7x_00_002700_oval_mil_disa_stig_mongodb7_filestate"
+      version="1">
+    <unix:group_id datatype="int" operation="equals">0</unix:group_id>
+    <unix:user_id  datatype="int" operation="equals">0</unix:user_id>
+    <unix:uread  datatype="boolean">true</unix:uread>
+    <unix:uwrite datatype="boolean">true</unix:uwrite>
+    <unix:uexec  datatype="boolean">true</unix:uexec>
+    <unix:gread  datatype="boolean">true</unix:gread>
+    <unix:gwrite datatype="boolean">false</unix:gwrite>
+    <unix:gexec  datatype="boolean">true</unix:gexec>
+    <unix:oread  datatype="boolean">true</unix:oread>
+    <unix:owrite datatype="boolean">false</unix:owrite>
+    <unix:oexec  datatype="boolean">true</unix:oexec>
+  </unix:file_state>
+
+</def-group>

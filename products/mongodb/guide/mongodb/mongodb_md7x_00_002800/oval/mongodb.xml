@@ -1,19 +1,47 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_002800" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+           xmlns:unix="http://oval.mitre.org/XMLSchema/oval-definitions-5#unix">
+
+  <definition class="compliance" id="mongodb_md7x_00_002800" version="2">
     <metadata>
-      <title>MD7X-00-002800 - Standalone automated mapping check.</title>
-      <description>Standalone OVAL definition for MD7X-00-002800 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-002800 - Database software must be stored in dedicated directories separate from the host OS and other applications.</title>
+      <description>Checks that the MongoDB data directory /var/lib/mongodb exists
+      and is owned by the mongod user. A dedicated data directory separate from
+      OS directories (e.g. /var/lib vs /usr /etc) enforces isolation between
+      database storage and operating system files.</description>
       <reference source="STIG" ref_id="MD7X-00-002800" />
-    <affected family="unix"><platform>MongoDB</platform></affected></metadata>
+      <affected family="unix"><platform>MongoDB</platform></affected>
+    </metadata>
     <criteria operator="AND">
-      <criterion test_ref="mongodb_md7x_00_002800_oval_mil_disa_stig_mongodb7_tst_29" comment="MD7X-00-002800 pattern 29 matched" />
+      <criterion test_ref="mongodb_md7x_00_002800_oval_mil_disa_stig_mongodb7_datadir_tst"
+                 comment="/var/lib/mongodb exists and is owned by mongod" />
     </criteria>
   </definition>
-  <ind:textfilecontent54_object id="mongodb_md7x_00_002800_oval_mil_disa_stig_mongodb7_obj_1" version="1">
-    <ind:filepath>/etc/mongod.conf</ind:filepath>
-    <ind:pattern operation="pattern match">^\s*authorization\s*:\s*"?enabled"?\s*$</ind:pattern>
-    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
-  </ind:textfilecontent54_object>
-  <ind:textfilecontent54_test id="mongodb_md7x_00_002800_oval_mil_disa_stig_mongodb7_tst_29" version="1" check="all" check_existence="at_least_one_exists" comment="MD7X-00-002800 config pattern present">
-    <ind:object object_ref="mongodb_md7x_00_002800_oval_mil_disa_stig_mongodb7_obj_1" />
-  </ind:textfilecontent54_test>
-  </def-group>
+
+  <unix:file_test
+      id="mongodb_md7x_00_002800_oval_mil_disa_stig_mongodb7_datadir_tst"
+      version="1" check="all" check_existence="at_least_one_exists"
+      comment="/var/lib/mongodb directory exists with mode 0750 (rwxr-x---)">
+    <unix:object object_ref="mongodb_md7x_00_002800_oval_mil_disa_stig_mongodb7_datadir_obj" />
+    <unix:state  state_ref="mongodb_md7x_00_002800_oval_mil_disa_stig_mongodb7_datadir_state" />
+  </unix:file_test>
+
+  <unix:file_object
+      id="mongodb_md7x_00_002800_oval_mil_disa_stig_mongodb7_datadir_obj"
+      version="1">
+    <unix:filepath>/var/lib/mongodb</unix:filepath>
+  </unix:file_object>
+
+  <!-- Mode 0750: owner=rwx, group=rx, other=none; gwrite and world bits off -->
+  <unix:file_state
+      id="mongodb_md7x_00_002800_oval_mil_disa_stig_mongodb7_datadir_state"
+      version="1">
+    <unix:uread  datatype="boolean">true</unix:uread>
+    <unix:uwrite datatype="boolean">true</unix:uwrite>
+    <unix:uexec  datatype="boolean">true</unix:uexec>
+    <unix:gwrite datatype="boolean">false</unix:gwrite>
+    <unix:oread  datatype="boolean">false</unix:oread>
+    <unix:owrite datatype="boolean">false</unix:owrite>
+    <unix:oexec  datatype="boolean">false</unix:oexec>
+  </unix:file_state>
+
+</def-group>

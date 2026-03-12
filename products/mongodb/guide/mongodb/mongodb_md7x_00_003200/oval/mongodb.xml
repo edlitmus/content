@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_003200" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_003200" version="2">
     <metadata>
-      <title>MD7X-00-003200 - Unused database components that are integrated in MongoDB and cannot be uninstalled must be disabled.</title>
-      <description>Standalone OVAL definition for MD7X-00-003200 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-003200 - Unused MongoDB components integrated into the database must be disabled.</title>
+      <description>Checks that security.javascriptEnabled is false in mongod.conf. Disabling server-side JavaScript removes the V8 engine, an integrated but non-mandatory execution subsystem that increases attack surface when enabled.</description>
       <reference source="STIG" ref_id="MD7X-00-003200" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

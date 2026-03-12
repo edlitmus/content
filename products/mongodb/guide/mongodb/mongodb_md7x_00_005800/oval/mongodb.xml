@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_005800" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_005800" version="2">
     <metadata>
-      <title>MD7X-00-005800 - MongoDB and associated applications must reserve the use of dynamic code execution for situations that require it.</title>
-      <description>Standalone OVAL definition for MD7X-00-005800 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-005800 - MongoDB must reserve the use of dynamic code execution for situations that require it.</title>
+      <description>Checks that security.javascriptEnabled is false in mongod.conf. Server-side JavaScript execution (mapReduce, $where, $function) allows arbitrary code evaluation and must be disabled unless a specific audited use case requires it.</description>
       <reference source="STIG" ref_id="MD7X-00-005800" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

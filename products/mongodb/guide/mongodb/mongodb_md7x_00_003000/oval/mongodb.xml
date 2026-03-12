@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_003000" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_003000" version="2">
     <metadata>
-      <title>MD7X-00-003000 - Standalone automated mapping check.</title>
-      <description>Standalone OVAL definition for MD7X-00-003000 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-003000 - Roles and groups used to modify database structure must be restricted to authorized users.</title>
+      <description>Checks that security.authorization is enabled in mongod.conf. RBAC authorization is the mechanism by which MongoDB restricts which principals hold database-modification roles (dbAdmin, dbOwner, clusterAdmin). Enabling authorization activates role enforcement for all structure-modifying operations.</description>
       <reference source="STIG" ref_id="MD7X-00-003000" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

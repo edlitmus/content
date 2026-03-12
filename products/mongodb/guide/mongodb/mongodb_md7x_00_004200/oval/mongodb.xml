@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_004200" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_004200" version="2">
     <metadata>
       <title>MD7X-00-004200 - MongoDB must map the PKI-authenticated identity to an associated user account.</title>
-      <description>Standalone OVAL definition for MD7X-00-004200 using static mongod.conf pattern matching.</description>
+      <description>Checks that net.tls.allowInvalidHostnames is false in mongod.conf, ensuring TLS certificate hostname validation is enforced. Valid hostname matching is required to correctly map a PKI certificate identity to the intended MongoDB user account.</description>
       <reference source="STIG" ref_id="MD7X-00-004200" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

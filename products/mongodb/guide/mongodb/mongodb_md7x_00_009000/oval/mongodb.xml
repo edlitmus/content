@@ -1,19 +1,35 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_009000" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+           xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+
+  <definition class="compliance" id="mongodb_md7x_00_009000" version="2">
     <metadata>
-      <title>MD7X-00-009000 - Standalone automated mapping check.</title>
-      <description>Standalone OVAL definition for MD7X-00-009000 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-009000 - MongoDB must behave predictably when invalid inputs are received.</title>
+      <description>Checks that security.javascriptEnabled is set to false in mongod.conf.
+      Disabling server-side JavaScript removes the V8 engine execution path, eliminating
+      a class of invalid-input vulnerabilities where malicious JS expressions could be
+      evaluated server-side, causing unpredictable or unsafe behavior.</description>
       <reference source="STIG" ref_id="MD7X-00-009000" />
-    <affected family="unix"><platform>MongoDB</platform></affected></metadata>
+      <affected family="unix"><platform>MongoDB</platform></affected>
+    </metadata>
     <criteria operator="AND">
-      <criterion test_ref="mongodb_md7x_00_009000_oval_mil_disa_stig_mongodb7_tst_49" comment="MD7X-00-009000 pattern 49 matched" />
+      <criterion test_ref="mongodb_md7x_00_009000_js_disabled_tst"
+                 comment="security.javascriptEnabled is false" />
     </criteria>
   </definition>
-  <ind:textfilecontent54_object id="mongodb_md7x_00_009000_oval_mil_disa_stig_mongodb7_obj_1" version="1">
+
+  <ind:textfilecontent54_object
+      id="mongodb_md7x_00_009000_js_disabled_obj"
+      version="1">
     <ind:filepath>/etc/mongod.conf</ind:filepath>
-    <ind:pattern operation="pattern match">^\s*authorization\s*:\s*"?enabled"?\s*$</ind:pattern>
+    <ind:pattern operation="pattern match">^\s*javascriptEnabled\s*:\s*false\s*$</ind:pattern>
     <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
   </ind:textfilecontent54_object>
-  <ind:textfilecontent54_test id="mongodb_md7x_00_009000_oval_mil_disa_stig_mongodb7_tst_49" version="1" check="all" check_existence="at_least_one_exists" comment="MD7X-00-009000 config pattern present">
-    <ind:object object_ref="mongodb_md7x_00_009000_oval_mil_disa_stig_mongodb7_obj_1" />
+
+  <ind:textfilecontent54_test
+      id="mongodb_md7x_00_009000_js_disabled_tst"
+      version="1" check="all" check_existence="at_least_one_exists"
+      comment="security.javascriptEnabled: false present in mongod.conf">
+    <ind:object object_ref="mongodb_md7x_00_009000_js_disabled_obj" />
   </ind:textfilecontent54_test>
-  </def-group>
+
+</def-group>

@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_006000" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_006000" version="2">
     <metadata>
-      <title>MD7X-00-006000 - MongoDB must provide nonprivileged users with error messages that provide information necessary for corrective actions without revealing information that could be exploited by adversaries.</title>
-      <description>Standalone OVAL definition for MD7X-00-006000 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-006000 - MongoDB must provide nonprivileged users with error messages that do not expose sensitive data.</title>
+      <description>Checks that security.redactClientLogData is true in mongod.conf. Redacting client log data prevents query field values and document contents from being logged, ensuring nonprivileged administrators or auditors cannot recover sensitive data from log files.</description>
       <reference source="STIG" ref_id="MD7X-00-006000" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">

@@ -1,19 +1,53 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_006200" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
+           xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
+
+  <definition class="compliance" id="mongodb_md7x_00_006200" version="2">
     <metadata>
-      <title>MD7X-00-006200 - Standalone automated mapping check.</title>
-      <description>Standalone OVAL definition for MD7X-00-006200 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-006200 - MongoDB must automatically terminate user sessions after defined trigger events.</title>
+      <description>Checks that (1) security.authorization is enabled so MongoDB enforces
+      logical session identity, and (2) net.tls.mode is requireTLS so TLS session
+      termination (via cert revocation / session renegotiation) is technically enforceable.</description>
       <reference source="STIG" ref_id="MD7X-00-006200" />
-    <affected family="unix"><platform>MongoDB</platform></affected></metadata>
+      <affected family="unix"><platform>MongoDB</platform></affected>
+    </metadata>
     <criteria operator="AND">
-      <criterion test_ref="mongodb_md7x_00_006200_oval_mil_disa_stig_mongodb7_tst_38" comment="MD7X-00-006200 pattern 38 matched" />
+      <criterion test_ref="mongodb_md7x_00_006200_auth_tst"
+                 comment="security.authorization is enabled" />
+      <criterion test_ref="mongodb_md7x_00_006200_tls_tst"
+                 comment="net.tls.mode is requireTLS" />
     </criteria>
   </definition>
-  <ind:textfilecontent54_object id="mongodb_md7x_00_006200_oval_mil_disa_stig_mongodb7_obj_1" version="1">
+
+  <!-- Check 1: authorization must be enabled -->
+  <ind:textfilecontent54_object
+      id="mongodb_md7x_00_006200_auth_obj"
+      version="1">
     <ind:filepath>/etc/mongod.conf</ind:filepath>
     <ind:pattern operation="pattern match">^\s*authorization\s*:\s*"?enabled"?\s*$</ind:pattern>
     <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
   </ind:textfilecontent54_object>
-  <ind:textfilecontent54_test id="mongodb_md7x_00_006200_oval_mil_disa_stig_mongodb7_tst_38" version="1" check="all" check_existence="at_least_one_exists" comment="MD7X-00-006200 config pattern present">
-    <ind:object object_ref="mongodb_md7x_00_006200_oval_mil_disa_stig_mongodb7_obj_1" />
+
+  <ind:textfilecontent54_test
+      id="mongodb_md7x_00_006200_auth_tst"
+      version="1" check="all" check_existence="at_least_one_exists"
+      comment="authorization: enabled present in mongod.conf">
+    <ind:object object_ref="mongodb_md7x_00_006200_auth_obj" />
   </ind:textfilecontent54_test>
-  </def-group>
+
+  <!-- Check 2: TLS mode must be requireTLS -->
+  <ind:textfilecontent54_object
+      id="mongodb_md7x_00_006200_tls_obj"
+      version="1">
+    <ind:filepath>/etc/mongod.conf</ind:filepath>
+    <ind:pattern operation="pattern match">^\s*mode\s*:\s*requireTLS\s*$</ind:pattern>
+    <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
+  </ind:textfilecontent54_object>
+
+  <ind:textfilecontent54_test
+      id="mongodb_md7x_00_006200_tls_tst"
+      version="1" check="all" check_existence="at_least_one_exists"
+      comment="net.tls.mode: requireTLS present in mongod.conf">
+    <ind:object object_ref="mongodb_md7x_00_006200_tls_obj" />
+  </ind:textfilecontent54_test>
+
+</def-group>

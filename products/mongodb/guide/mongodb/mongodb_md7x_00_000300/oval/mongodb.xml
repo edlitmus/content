@@ -1,7 +1,7 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_000300" version="1">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_000300" version="2">
     <metadata>
-      <title>MD7X-00-000300 - MongoDB must enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies.</title>
-      <description>Standalone OVAL definition for MD7X-00-000300 using static mongod.conf pattern matching.</description>
+      <title>MD7X-00-000300 - MongoDB must enforce approved authorizations for logical access to information and system resources.</title>
+      <description>Checks that security.authorization is set to enabled in mongod.conf, activating MongoDB's role-based access control (RBAC) engine. This ensures all database access is gated through configured roles and privileges, enforcing approved logical access control policies.</description>
       <reference source="STIG" ref_id="MD7X-00-000300" />
     <affected family="unix"><platform>MongoDB</platform></affected></metadata>
     <criteria operator="AND">
