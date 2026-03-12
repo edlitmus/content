@@ -1,0 +1,23 @@
+<def-group>
+  <definition class="inventory"
+  id="installed_app_is_mongodb" version="1">
+    <metadata>
+      <title>MongoDB</title>
+      <affected family="unix">
+        <product>MongoDB</product>
+      </affected>
+      <reference ref_id="cpe:/a:mongodb:mongodb" source="CPE" />
+      <description>The application installed on the system is MongoDB.</description>
+    </metadata>
+    <criteria operator="AND">
+      <criterion comment="MongoDB runtime binary path exists" test_ref="test_mongodb" />
+    </criteria>
+  </definition>
+
+  <unix:file_test check="all" check_existence="at_least_one_exists" id="test_mongodb" version="1" comment="mongod binary exists">
+    <unix:object object_ref="obj_mongodb" />
+  </unix:file_test>
+  <unix:file_object id="obj_mongodb" version="1">
+    <unix:filepath>/usr/bin/mongod</unix:filepath>
+  </unix:file_object>
+</def-group>

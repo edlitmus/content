@@ -1,0 +1,18 @@
+documentation_complete: true
+
+title: 'MongoDB must enforce access restrictions associated with changes to the configuration of MongoDB or database(s).'
+
+description: |-
+    Failure to provide logical access restrictions associated with changes to configuration may have significant effects on the overall security of the system.
+
+    When dealing with access restrictions pertaining to change control, it should be noted that any changes to the hardware, software, and/or firmware components of the information system can potentially have significant effects on the overall security of the system.
+
+    Accordingly, only qualified and authorized individuals should be allowed to obtain access to system components for the purposes of initiating changes, including upgrades and modifications.
+
+rationale: |-
+    This rule was migrated from MongoDB STIG standalone development content into product-managed structure.
+
+severity: medium
+
+references:
+    stigid@mongodb: MD7X-00-007800

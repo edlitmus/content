@@ -1,0 +1,18 @@
+documentation_complete: true
+
+title: 'If passwords are used for authentication, MongoDB must store only hashed, salted representations of passwords.'
+
+description: |-
+    The DOD standard for authentication is DOD-approved public key infrastructure (PKI) certificates.
+
+    Authentication based on user ID and password may be used only when it is not possible to employ a PKI certificate, and requires authorizing official (AO) approval.
+
+    In such cases, database passwords stored in clear text, using reversible encryption, or using unsalted hashes would be vulnerable to unauthorized disclosure. Database passwords must always be in the form of one-way, salted hashes when stored internally or externally to MongoDB.
+
+rationale: |-
+    This rule was migrated from MongoDB STIG standalone development content into product-managed structure.
+
+severity: high
+
+references:
+    stigid@mongodb: MD7X-00-003800

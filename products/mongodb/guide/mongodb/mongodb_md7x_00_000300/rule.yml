@@ -1,0 +1,14 @@
+documentation_complete: true
+
+title: 'MongoDB must enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies.'
+
+description: |-
+    MongoDB must enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies.
+
+rationale: |-
+    This rule was migrated from MongoDB STIG standalone development content into product-managed structure.
+
+severity: high
+
+references:
+    stigid@mongodb: MD7X-00-000300

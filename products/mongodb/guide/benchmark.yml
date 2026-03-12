@@ -1,0 +1,25 @@
+---
+documentation_complete: true
+
+title: Guide to the Secure Configuration of {{{ full_name }}}
+
+status: draft
+
+description: |
+    This guide presents a catalog of security-relevant configuration settings for {{{ full_name }}}.
+    The content is structured in XCCDF format to support security automation and checklist tailoring.
+    This product migration tracks MongoDB 7.x STIG requirements and maps them into product-managed content.
+
+notice:
+    id: terms_of_use
+    description: |
+        Test all settings in a non-operational environment before deployment.
+
+front-matter: |
+    The SCAP Security Guide Project<br/>
+    {{{ weblink(link="https://www.open-scap.org/security-policies/scap-security-guide") }}}
+
+rear-matter: |
+    This benchmark contains migrated MongoDB STIG-oriented content managed under the products/mongodb tree.
+
+version: 0.1

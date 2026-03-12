@@ -1,0 +1,18 @@
+documentation_complete: true
+
+title: 'When updates are applied to MongoDB software, any software components that have been replaced or made unnecessary must be removed.'
+
+description: |-
+    Previous versions of DBMS components that are not removed from the information system after updates have been installed may be exploited by adversaries.
+
+    Some DBMSs' installation tools may remove older versions of software automatically from the information system. In other cases, manual review and removal will be required. In planning installations and upgrades, organizations must include steps (automated, manual, or both) to identify and remove the outdated modules.
+
+    A transition period may be necessary when both the old and the new software are required. This should be taken into account in the planning.
+
+rationale: |-
+    This rule was migrated from MongoDB STIG standalone development content into product-managed structure.
+
+severity: medium
+
+references:
+    stigid@mongodb: MD7X-00-009100

@@ -1,0 +1,16 @@
+documentation_complete: true
+
+title: 'MongoDB must prevent unauthorized and unintended information transfer via shared system resources.'
+
+description: |-
+    The purpose of this control is to prevent information, including encrypted representations of information, produced by the actions of a prior user/role (or the actions of a process acting on behalf of a prior user/role) from being available to any current user/role (or current process) that obtains access to a shared system resource (e.g., registers, main memory, secondary storage) after the resource has been released back to the information system. Control of information in shared resources is also referred to as object reuse.
+
+    Satisfies: SRG-APP-000243-DB-000373, SRG-APP-000243-DB-000374
+
+rationale: |-
+    This rule was migrated from MongoDB STIG standalone development content into product-managed structure.
+
+severity: medium
+
+references:
+    stigid@mongodb: MD7X-00-005500

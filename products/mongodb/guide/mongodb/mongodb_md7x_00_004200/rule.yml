@@ -1,0 +1,14 @@
+documentation_complete: true
+
+title: 'MongoDB must map the PKI-authenticated identity to an associated user account.'
+
+description: |-
+    The DOD standard for authentication is DOD-approved PKI certificates. Once a PKI certificate has been validated, it must be mapped to a DBMS user account for the authenticated identity to be meaningful to MongoDB and useful for authorization decisions.
+
+rationale: |-
+    This rule was migrated from MongoDB STIG standalone development content into product-managed structure.
+
+severity: medium
+
+references:
+    stigid@mongodb: MD7X-00-004200

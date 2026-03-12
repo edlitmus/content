@@ -1,0 +1,14 @@
+documentation_complete: true
+
+title: 'MongoDB must integrate with an organization-level authentication/access mechanism providing account management and automation for all users, groups, roles, and any other principals.'
+
+description: |-
+    MongoDB must integrate with an organization-level authentication/access mechanism providing account management and automation for all users, groups, roles, and any other principals.
+
+rationale: |-
+    This rule was migrated from MongoDB STIG standalone development content into product-managed structure.
+
+severity: high
+
+references:
+    stigid@mongodb: MD7X-00-000200
