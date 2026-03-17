@@ -1,0 +1,13 @@
+# Test for MD7X-00-000200: MongoDB using Kerberos/GSSAPI authentication
+
+---
+# This is a compliant mongod.conf with GSSAPI/Kerberos external authentication configured
+security:
+  sasLauthdDaemon: "/var/run/saslauthd"
+  authenticationMechanisms:
+    - "GSSAPI"
+    - "SCRAM-SHA-256"
+  authorization: "enabled"
+
+setParameter:
+  enableLocalhostAuthBypass: false

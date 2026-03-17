@@ -1,0 +1,16 @@
+# Test for MD7X-00-000200: MongoDB using OIDC authentication
+
+---
+# This is a compliant mongod.conf with MONGODB-OIDC external authentication configured
+security:
+  oidc:
+    enabled: true
+    clientId: "mongodb-client"
+    issuer: "https://auth.example.com"
+  authenticationMechanisms:
+    - "MONGODB-OIDC"
+    - "SCRAM-SHA-256"
+  authorization: "enabled"
+
+setParameter:
+  enableLocalhostAuthBypass: false

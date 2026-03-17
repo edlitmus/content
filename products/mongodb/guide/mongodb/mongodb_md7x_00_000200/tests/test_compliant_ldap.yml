@@ -1,0 +1,17 @@
+# Test for MD7X-00-000200: MongoDB using LDAP authentication
+
+---
+# This is a compliant mongod.conf with LDAP external authentication configured
+security:
+  ldap:
+    servers:
+      - "ldap.example.com"
+  authenticationMechanisms:
+    - "SCRAM-SHA-1"
+    - "GSSAPI"
+    - "PLAIN"
+    - "MONGODB-OIDC"
+  authorization: "enabled"
+
+setParameter:
+  enableLocalhostAuthBypass: false

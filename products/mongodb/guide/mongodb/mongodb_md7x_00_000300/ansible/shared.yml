@@ -1,0 +1,19 @@
+# platform = MongoDB
+# reboot = true
+# strategy = configure
+# complexity = low
+# disruption = low
+
+- name: Ensure MongoDB security stanza exists
+  ansible.builtin.lineinfile:
+    path: /etc/mongod.conf
+    regexp: '^security:'
+    line: 'security:'
+    insertafter: EOF
+
+- name: Ensure MongoDB authorization is enabled
+  ansible.builtin.lineinfile:
+    path: /etc/mongod.conf
+    regexp: '^  authorization:'
+    line: '  authorization: enabled'
+    insertafter: '^security:'

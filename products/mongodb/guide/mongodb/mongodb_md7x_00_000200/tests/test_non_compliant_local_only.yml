@@ -1,0 +1,11 @@
+# Test for MD7X-00-000200: MongoDB NOT COMPLIANT - Local authentication only
+
+---
+# This is a NON-COMPLIANT mongod.conf with only local SCRAM authentication
+security:
+  authenticationMechanisms:
+    - "SCRAM-SHA-256"
+  authorization: "enabled"
+
+setParameter:
+  enableLocalhostAuthBypass: false
