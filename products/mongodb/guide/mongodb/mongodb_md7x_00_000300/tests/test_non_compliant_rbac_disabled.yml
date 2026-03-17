@@ -1,0 +1,9 @@
+# Test for MD7X-00-000300: MongoDB NOT COMPLIANT - RBAC disabled
+
+---
+# This is a NON-COMPLIANT mongod.conf without authorization or with disabled
+# Users can perform any database operation without role-based access control
+
+# No security section or security section without authorization configured
+processBanked: 4
+directoryperms: 0700

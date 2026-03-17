@@ -1,4 +1,4 @@
-<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_000300" version="2">
+<def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5" xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent"><definition class="compliance" id="mongodb_md7x_00_000300" version="3">
     <metadata>
       <title>MD7X-00-000300 - MongoDB must enforce approved authorizations for logical access to information and system resources.</title>
       <description>Checks that security.authorization is set to enabled in mongod.conf, activating MongoDB's role-based access control (RBAC) engine. This ensures all database access is gated through configured roles and privileges, enforcing approved logical access control policies.</description>
@@ -8,12 +8,17 @@
       <criterion test_ref="mongodb_md7x_00_000300_oval_mil_disa_stig_mongodb7_tst_2" comment="MD7X-00-000300 pattern 2 matched" />
     </criteria>
   </definition>
-  <ind:textfilecontent54_object id="mongodb_md7x_00_000300_oval_mil_disa_stig_mongodb7_obj_2" version="1">
+  <ind:textfilecontent54_object id="mongodb_md7x_00_000300_oval_mil_disa_stig_mongodb7_obj_2" version="2">
     <ind:filepath>/etc/mongod.conf</ind:filepath>
-    <ind:pattern operation="pattern match">^\s*authorization\s*:\s*"?enabled"?\s*$</ind:pattern>
+    <ind:pattern operation="pattern match">^\s*authorization\s*:\s*.*</ind:pattern>
     <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
   </ind:textfilecontent54_object>
-  <ind:textfilecontent54_test id="mongodb_md7x_00_000300_oval_mil_disa_stig_mongodb7_tst_2" version="1" check="all" check_existence="at_least_one_exists" comment="MD7X-00-000300 config pattern present">
+  
+  <ind:textfilecontent54_state id="mongodb_md7x_00_000300_oval_mil_disa_stig_mongodb7_state_2" version="1">
+    <ind:subexpression operation="pattern match">^\s*authorization\s*:\s*"?enabled"?\s*$</ind:subexpression>
+  </ind:textfilecontent54_state>
+  <ind:textfilecontent54_test id="mongodb_md7x_00_000300_oval_mil_disa_stig_mongodb7_tst_2" version="2" check="all" comment="authorization is set to enabled">
     <ind:object object_ref="mongodb_md7x_00_000300_oval_mil_disa_stig_mongodb7_obj_2" />
+    <ind:state state_ref="mongodb_md7x_00_000300_oval_mil_disa_stig_mongodb7_state_2" />
   </ind:textfilecontent54_test>
   </def-group>

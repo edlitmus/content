@@ -1,7 +1,7 @@
 <def-group xmlns="http://oval.mitre.org/XMLSchema/oval-definitions-5"
            xmlns:ind="http://oval.mitre.org/XMLSchema/oval-definitions-5#independent">
 
-  <definition class="compliance" id="mongodb_md7x_00_000200" version="2">
+  <definition class="compliance" id="mongodb_md7x_00_000200" version="3">
     <metadata>
       <title>MD7X-00-000200 - MongoDB must integrate with an organization-level authentication/access mechanism.</title>
       <description>Checks that MongoDB is configured to use an external (organization-level)
@@ -16,7 +16,7 @@
       <criterion test_ref="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_tst_ldap"
                  comment="security.ldap.servers is configured in mongod.conf" />
       <criterion test_ref="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_tst_extauth"
-                 comment="authenticationMechanisms includes an org-level mechanism (GSSAPI, PLAIN, MONGODB-OIDC)" />
+             comment="authenticationMechanisms includes an org-level mechanism (GSSAPI, PLAIN, MONGODB-OIDC)" />
     </criteria>
   </definition>
 
@@ -29,11 +29,18 @@
     <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
   </ind:textfilecontent54_object>
 
+  <ind:textfilecontent54_state
+      id="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_state_ldap"
+      version="1">
+    <ind:subexpression operation="pattern match">^\s*servers\s*:\s*\S+</ind:subexpression>
+  </ind:textfilecontent54_state>
+
   <ind:textfilecontent54_test
       id="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_tst_ldap"
-      version="1" check="all" check_existence="at_least_one_exists"
-      comment="security.ldap.servers is configured">
+      version="2" check="all"
+      comment="security.ldap.servers is configured with valid server addresses">
     <ind:object object_ref="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_obj_ldap" />
+    <ind:state state_ref="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_state_ldap" />
   </ind:textfilecontent54_test>
 
   <!-- Check for external authentication mechanism (GSSAPI, PLAIN, or MONGODB-OIDC) -->
@@ -41,15 +48,22 @@
       id="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_obj_extauth"
       version="1">
     <ind:filepath>/etc/mongod.conf</ind:filepath>
-    <ind:pattern operation="pattern match">^\s*authenticationMechanisms\s*:\s*.*(GSSAPI|PLAIN|MONGODB-OIDC).*$</ind:pattern>
+    <ind:pattern operation="pattern match">^\s*authenticationMechanisms\s*:\s*.*</ind:pattern>
     <ind:instance datatype="int" operation="greater than or equal">1</ind:instance>
   </ind:textfilecontent54_object>
 
+  <ind:textfilecontent54_state
+      id="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_state_extauth"
+      version="1">
+    <ind:subexpression operation="pattern match">(GSSAPI|PLAIN|MONGODB-OIDC)</ind:subexpression>
+  </ind:textfilecontent54_state>
+
   <ind:textfilecontent54_test
       id="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_tst_extauth"
-      version="1" check="all" check_existence="at_least_one_exists"
+      version="2" check="all"
       comment="authenticationMechanisms includes an org-level mechanism">
     <ind:object object_ref="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_obj_extauth" />
+    <ind:state state_ref="mongodb_md7x_00_000200_oval_mil_disa_stig_mongodb7_state_extauth" />
   </ind:textfilecontent54_test>
 
 </def-group>

@@ -1,0 +1,14 @@
+# Test for MD7X-00-000300: MongoDB with RBAC enabled
+
+---
+# This is a compliant mongod.conf with authorization enabled
+security:
+  authorization: enabled
+  authentication:
+    mechanisms:
+      - "SCRAM-SHA-256"
+  ldap:
+    servers:
+      - "ldap.example.com"
+
+# Additional configuration omitted for brevity

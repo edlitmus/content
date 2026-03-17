@@ -1,0 +1,47 @@
+# platform = MongoDB
+# reboot = true
+# strategy = configure
+# complexity = medium
+# disruption = low
+
+- name: Ensure MongoDB security stanza exists
+  ansible.builtin.lineinfile:
+    path: /etc/mongod.conf
+    regexp: '^security:'
+    line: 'security:'
+    insertafter: EOF
+
+- name: Ensure MongoDB LDAP stanza exists
+  ansible.builtin.lineinfile:
+    path: /etc/mongod.conf
+    regexp: '^  ldap:'
+    line: '  ldap:'
+    insertafter: '^security:'
+
+- name: Ensure MongoDB LDAP servers key exists
+  ansible.builtin.lineinfile:
+    path: /etc/mongod.conf
+    regexp: '^    servers:'
+    line: '    servers:'
+    insertafter: '^  ldap:'
+
+- name: Ensure MongoDB LDAP server is configured
+  ansible.builtin.lineinfile:
+    path: /etc/mongod.conf
+    regexp: '^      - "ldap.example.com"$'
+    line: '      - "ldap.example.com"'
+    insertafter: '^    servers:'
+
+- name: Ensure MongoDB authentication mechanisms key exists
+  ansible.builtin.lineinfile:
+    path: /etc/mongod.conf
+    regexp: '^  authenticationMechanisms:'
+    line: '  authenticationMechanisms:'
+    insertafter: '^security:'
+
+- name: Ensure MongoDB includes GSSAPI mechanism
+  ansible.builtin.lineinfile:
+    path: /etc/mongod.conf
+    regexp: '^      - "GSSAPI"$'
+    line: '      - "GSSAPI"'
+    insertafter: '^  authenticationMechanisms:'
