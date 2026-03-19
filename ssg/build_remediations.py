@@ -534,6 +534,9 @@ def write_fix_to_file(fix, file_path):
     """
     fix_contents, config = fix
     with open(file_path, "w") as f:
+        if fix_contents.startswith("#!"):
+            shebang, _, fix_contents = fix_contents.partition("\n")
+            f.write(shebang + "\n")
         for k, v in config.items():
             f.write("# %s = %s\n" % (k, v))
         f.write(fix_contents)

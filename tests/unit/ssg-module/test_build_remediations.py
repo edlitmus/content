@@ -76,6 +76,22 @@ def test_process_fix(env_yaml, cpe_platforms):
     do_test_contents(result.contents, result.config)
 
 
+def test_write_fix_to_file_keeps_bash_shebang_first(tmp_path):
+    output_path = tmp_path / "generated.sh"
+    fix = sbr.RemediationObject(
+        contents="#!/bin/bash\necho hello\n",
+        config={"platform": "multi_platform_all", "reboot": "false"},
+    )
+
+    sbr.write_fix_to_file(fix, str(output_path))
+
+    lines = output_path.read_text().splitlines()
+    assert lines[0] == "#!/bin/bash"
+    assert lines[1] == "# platform = multi_platform_all"
+    assert lines[2] == "# reboot = false"
+    assert lines[3] == "echo hello"
+
+
 def test_ansible_class(env_yaml, cpe_platforms):
     remediation = sbr.AnsibleRemediation.from_snippet_and_rule(
         os.path.join(DATADIR, "ansible.yml"), os.path.join(DATADIR, "file_owner_grub2_cfg.yml")
